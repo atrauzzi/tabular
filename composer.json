@@ -1,0 +1,25 @@
+{
+	"name": "atrauzzi/tabular",
+	"description": "A really simple and clean CSV library.",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Alexander Trauzzi",
+			"email": "atrauzzi@gmail.com",
+			"homepage": "http://profiles.google.com/atrauzzi"
+		}
+	],
+	"keywords": [
+		"csv",
+		"tabular"
+	],
+	"require": {
+		"php": ">=5.4.0"
+	},
+	"autoload": {
+		"psr-0": {
+			"Atrauzzi\\Tabular": "src/"
+		}
+	},
+	"minimum-stability": "dev"
+}
