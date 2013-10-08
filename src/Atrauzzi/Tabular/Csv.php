@@ -1,12 +1,9 @@
 <?php namespace Atrauzzi\Tabular;
 
 use SplFileObject;
-//use ArrayAccess;
 
-// https://github.com/symfony/symfony/tree/master/src/Symfony/Component/Translation/Loader/CsvFileLoader.php
-// http://stackoverflow.com/questions/10181054/process-csv-into-array-with-column-headings-for-key
 
-class Csv extends SplFileObject /* implements ArrayAccess */ {
+class Csv extends SplFileObject {
 
 	/**
 	 * Will contain either a true-y value prior to first read, or an array containing all the column heading names.
@@ -50,10 +47,27 @@ class Csv extends SplFileObject /* implements ArrayAccess */ {
 	 * @return array
 	 */
 	public function current() {
-		return array_combine($this->columns, parent::current());
+
+		// A failure to read a row doesn't return anything.
+		if($row = parent::current())
+			return array_combine($this->columns, $row);
+
 	}
 
 	/**
+	 * Returns the label of a specific column (if it exists).
+	 *
+	 * @param $index
+	 * @return string
+	 */
+	public function getColumnName($index) {
+		if(isset($this->columns[$index]))
+			return $this->columns[$index];
+	}
+
+	/**
+	 * Gets an array with all column titles.
+	 *
 	 * @return array
 	 */
 	public function getColumns() {
