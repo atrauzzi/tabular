@@ -49,8 +49,12 @@ class Csv extends SplFileObject {
 	public function current() {
 
 		// A failure to read a row doesn't return anything.
-		if($row = parent::current())
-			return array_combine($this->columns, $row);
+		if($row = parent::current()) {
+			if($this->columns)
+				return array_combine($this->columns, $row);
+			else
+				return $row;
+		}
 
 	}
 
